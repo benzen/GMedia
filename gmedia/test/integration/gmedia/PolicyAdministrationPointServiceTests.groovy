@@ -49,4 +49,8 @@ class PolicyAdministrationPointServiceTests extends GrailsUnitTestCase {
     pap.deletePolicy(res,user)
     assertEquals([],pap.readPolicy(res,user))
   }
+  void testCreateExistingPolicy(){ 
+    pap.createPolicy(res,user,["read"])
+    pap.createPolicy(res,user,["read"])
+  }
 }
