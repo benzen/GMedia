@@ -13,5 +13,10 @@ class User extends Resource{
     def String toString(){
     "User("+name+","+email+")"
     }
+  def equals(User u){ 
+    name.equals(u.name)&&
+    password.equals(u.password)&&
+    email.equals(u.email)
+  }
 
 }
