@@ -3,7 +3,9 @@ package gmedia.service
 import grails.test.*
 
 class PlayerServiceTests extends GrailsUnitTestCase {
-    protected void setUp() {
+    
+
+  protected void setUp() {
         super.setUp()
     }
 

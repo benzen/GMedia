@@ -20,4 +20,13 @@ class MembershipServiceTests  extends GrailsUnitTestCase{
     def user = new User(name:"fakeuser",password:"fakePass", email:"email@mail.fr")
     assertEquals([user] ,service.listUser())
   }
+  
+  @Test
+  public void listDeletedUser(){ 
+    service.createUser("fakeUser","fakePass","email@mail.fr")
+   def user = User.findByNameAndEmail("fakeUser","email@mail.fr")
+   service.deleteUser(user)
+   assertEquals([], service.listUser())
+  }
+
 }
