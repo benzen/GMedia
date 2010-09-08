@@ -4,6 +4,10 @@ import grails.test.*
 import gmedia.service.policyAdministrationPoint.PolicyAdministrationPointService
 import gmedia.User
 import gmedia.Resource
+import org.junit.Test
+import org.junit.After
+import org.junit.Before
+
 class PolicyAdministrationPointServiceTests extends GrailsUnitTestCase {
   
   def pap
@@ -11,45 +15,52 @@ class PolicyAdministrationPointServiceTests extends GrailsUnitTestCase {
   def user
   def res
   
-  protected void setUp() {
-    super.setUp()
+  @Before
+  public void setUp() {
     pap = new PolicyAdministrationPointService()
     res = new Resource()
-    user = new User()
+    user = new User(name:"fakeUser",password:"fakePassword",email:"fakeUser@fakeHost.fr",)
     res.save()
-    user.save()
+    user.save(flush:true)
   }
-  
-  protected void tearDown() {
-    super.tearDown()
+
+  @After
+  public void tearDown() {
     Policy.findAll().each{p->p.delete() }
     res.delete()
     user.delete()
   }
   
-  void testCreatePolicy() {
+  @Test
+  void createPolicy() {
     pap.createPolicy(res,user,["read"])
     def actualRights = pap.readPolicy(res,user).collect{policy->policy.right}
     assertEquals(["read"], actualRights)
   }
-
-  void testDeletePolicy(){ 
+  
+  @Test
+  void deletePolicy(){ 
     pap.createPolicy(res,user,["read"])
     pap.deletePolicy(res,user)
     assertEquals([], pap.readPolicy(res, user))
   } 
-  void testUpdatePolicy(){ 
+
+  @Test
+  void updatePolicy(){ 
     pap.createPolicy(res,user,["read"])
     pap.updatePolicy(res,user,["read","write"])
     def actualRights = pap.readPolicy(res,user).collect{policy->policy.right}
     assertEquals(["read","write"], actualRights)
   }
-  
-  void testDeleteUpdatePolicyWhenNoPolicyExist(){ 
+
+  @Test
+  void deletePolicyWhenNoPolicyExist(){ 
     pap.deletePolicy(res,user)
     assertEquals([],pap.readPolicy(res,user))
   }
-  void testCreateExistingPolicy(){ 
+  
+  @Test
+  void createExistingPolicy(){ 
     pap.createPolicy(res,user,["read"])
     pap.createPolicy(res,user,["read"])
   }

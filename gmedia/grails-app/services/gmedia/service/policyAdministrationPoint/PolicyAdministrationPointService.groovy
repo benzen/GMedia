@@ -19,16 +19,18 @@ class PolicyAdministrationPointService {
     
   }
   def deletePolicy(Resource res, User user){
-    readPolicy(res,user).each{p->p.delete()}
+    readPolicy(res,user).each{p->p.lock();p.delete()}
   }
   def updatePolicy(Resource res, User user,List policies){
-    deletePolicy(res,user)
-    createPolicy(res,user,policies)
+    def currentPolicy = readPolicy(res,user)
+    policies.each{ p->
+      if(!currentPolicy.find{cp->cp.right.equals(p)})
+	createPolicy(res,user,[p])
     }
+  }
 
   def readPolicy(Resource res, User user){
-    Policy.findAllByResourceAndUser(res, user)?:[]
-    
+    Policy.findAllByResourceAndUser(res, user)
   }
 
   
