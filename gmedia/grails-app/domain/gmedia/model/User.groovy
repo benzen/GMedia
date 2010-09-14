@@ -7,8 +7,9 @@ class User extends Resource{
     String email
 
     def static constraints = {
-    	email(email:true)
-	password(blank:false, password:true)
+      name(blank:false)
+      email(email:true)
+      password(blank:false, password:true)
     }
     def String toString(){
     "User("+name+","+email+")"

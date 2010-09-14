@@ -5,6 +5,7 @@ import org.junit.Before
 import org.junit.After
 import grails.test.*
 import gmedia.service.membership.MembershipService
+import gmedia.model.User
 
 class MembershipServiceTests  extends GrailsUnitTestCase{ 
   def service

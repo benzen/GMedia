@@ -7,6 +7,9 @@ import org.junit.After
 import gmedia.service.policyAdministrationPoint.PolicyAdministrationPointService
 import gmedia.service.policyEnforcementPoint.PermissionDeniedException
 import gmedia.service.policyEnforcementPoint.PolicyEnforcementPointService
+import gmedia.model.User
+import gmedia.model.Resource
+import gmedia.model.Policy
 
 class PolicyEnforcementPointServiceTests extends GrailsUnitTestCase {
   def pap

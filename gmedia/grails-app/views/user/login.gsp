@@ -16,10 +16,10 @@
             <tbody>            
               <tr class="prop">
                 <td class="name">
-                  <label for="login">Login:</label>
+		  <label for="name">Login:</label>
                 </td>
                 <td>
-                  <input type="text" id="login" name="login"/>
+		  <input id="name" type='text' name='name' value='${user?.name}' />
                 </td>
               </tr> 
           
@@ -28,7 +28,7 @@
                   <label for="password">Password:</label>
                 </td>
                 <td>
-                  <input type="password" id="password" name="password"/>
+		<input id="password" type='password' name='password' value='${user?.password}' />
                 </td>
               </tr> 
             </tbody>

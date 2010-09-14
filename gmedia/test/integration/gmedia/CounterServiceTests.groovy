@@ -1,4 +1,4 @@
-package gmedia.service
+package gmedia
 
 import grails.test.*
 import org.junit.Test
@@ -17,14 +17,14 @@ class CounterServiceTests extends GrailsUnitTestCase{
   @Before
   public void setup(){ 
     counterService = new CounterService()
-    user = new User("fakename","fakePass","fake@email.com")
-    user.save()
+    user = new User(name:"fakename",password:"fakePass",email:"fake@email.com")
+    user.save(flush:true)
     music = new Music()
-    music.save()
+    music.save(flush:true)
   }
 
   @Test
-  playCounterCreation(){ 
+  public void playCounterCreation(){ 
     counterService.incrementPlayCounter(user,music)
     def counter = PlayCounter.findByUser(user).first()
     def excpectedCounter = new PlayCounter(user,music,1)

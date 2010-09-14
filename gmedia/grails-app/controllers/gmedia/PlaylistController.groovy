@@ -1,11 +1,16 @@
 package gmedia
 
 import gmedia.model.Playlist
-import gmedia.UserController
 
 class PlaylistController {
 
   def scaffold = Playlist
-  def beforeInterceptor = [action:UserControler.&auth]
+  def beforeInterceptor = [action:this.&auth]
   
+  def auth() {
+    if(!session.user) {
+      redirect(controller:"user", action:"login")
+      return false
+    }
+  }
 }
