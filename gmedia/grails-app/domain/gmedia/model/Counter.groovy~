@@ -1,0 +1,9 @@
+package gmedia.model
+import gmedia.User
+import gmedia.Music
+
+class Counter{
+  User user
+  Music music
+  int value = 0
+}

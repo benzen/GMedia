@@ -1,6 +1,6 @@
 package gmedia.service.policyEnforcementPoint
-import gmedia.User
-import gmedia.Resource
+import gmedia.model.User
+import gmedia.model.Resource
 class PolicyEnforcementPointService {
 
   def pap

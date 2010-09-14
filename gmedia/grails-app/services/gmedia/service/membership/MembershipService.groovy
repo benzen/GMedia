@@ -1,5 +1,5 @@
 package gmedia.service.membership
-import gmedia.User
+import gmedia.model.User
 
 class MembershipService {
 

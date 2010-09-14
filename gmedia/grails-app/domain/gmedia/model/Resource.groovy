@@ -1,4 +1,4 @@
-package gmedia
+package gmedia.model
 
 class Resource {
 

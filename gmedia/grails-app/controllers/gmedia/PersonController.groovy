@@ -1,5 +1,5 @@
 package gmedia
-
+import gmedia.model.Person
 class PersonController {
 
 def beforeInterceptor = [action:this.&auth]
@@ -10,5 +10,5 @@ def beforeInterceptor = [action:this.&auth]
       return false
     }
   }
-    def scaffold = true
+    def scaffold = Person
 }

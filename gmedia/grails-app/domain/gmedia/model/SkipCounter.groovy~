@@ -1,0 +1,2 @@
+package gmedia
+class SkipCounter extends Counter{ }

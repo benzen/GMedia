@@ -1,7 +1,7 @@
 package gmedia.service.player
 
-import gmedia.Music
-import gmedia.User
+import gmedia.model.Music
+import gmedia.model.User
 
 class PlayerService {
   

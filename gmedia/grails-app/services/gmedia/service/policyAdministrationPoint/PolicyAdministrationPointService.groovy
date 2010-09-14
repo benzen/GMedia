@@ -1,7 +1,7 @@
 package gmedia.service.policyAdministrationPoint
-import gmedia.User
-import gmedia.Resource
-import gmedia.Policy
+import gmedia.model.User
+import gmedia.model.Resource
+import gmedia.model.Policy
 class PolicyAdministrationPointService {
   
   static transactional = true

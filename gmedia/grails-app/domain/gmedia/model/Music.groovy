@@ -1,4 +1,5 @@
-package gmedia
+package gmedia.model
+import gmedia.model.Person
 
 class Music extends Resource{
 

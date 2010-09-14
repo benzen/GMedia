@@ -1,0 +1,4 @@
+package gmedia.model
+
+import gmedia.Counter
+class PlayCounter extends Counter{ }

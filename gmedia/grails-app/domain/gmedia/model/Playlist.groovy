@@ -1,4 +1,6 @@
-package gmedia
+package gmedia.model
+
+import gmedia.model.Resource
 
 class Playlist extends Resource{
 
