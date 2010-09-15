@@ -4,15 +4,27 @@ class UserController {
   
   def scaffold = User
   
-  def beforeInterceptor = [action:this.&auth, except:["login","logout","authenticate","create"]]
+  def beforeInterceptor = [action:this.&auth, except:["login","authenticate","create","save"]]
   
   def auth = {
     if(!session.user) {
+      flash.message="Log before do that"
       redirect(controller:"user", action:"login")
       return false
     }
   }
-  
+  def save = {
+    def user = new User(params)
+    if (user.save(flush: true)) {
+      flash.message = "User "+user.name+" succesfully created."
+      session.user = user
+      redirect(action: "show", id: user.id)
+    }
+    else {
+      render(view: "create", model: [user: user])
+    }
+  }
+
   def login={}
   
   def authenticate = {
@@ -29,8 +41,7 @@ class UserController {
   }
   
   def logout = {
-    def username = session?.user?.name?:""
-    flash.message = "Goodbye  ${username}"
+    flash.message = "Goodbye  ${session.user.name}"
     session.user = null
     redirect( action:'login')      
   }  

@@ -7,8 +7,6 @@ class PlayerService {
   
   def counterService
   
-  static transactional = true
-  
   def serviceMethod() {
     
   }
