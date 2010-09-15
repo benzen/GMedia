@@ -2,7 +2,8 @@ package gmedia.model
 
 class Person extends Resource{
 
-    String firstName
-    String lastName
-    
+  static hasMany=[music:Music]
+  String firstName
+  String lastName
+  
 }

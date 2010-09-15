@@ -12,9 +12,7 @@ class CounterService{
     if(counter){ 
       counter.value++
     }else{ 
-      counter = new PlayCounter(user,music)
-      user.save()
-      music.save()
+      counter = new PlayCounter(user:user,music:music)
       counter.save(flush:true)
     }
   }
@@ -25,8 +23,6 @@ class CounterService{
       counter.value++
     }else{ 
       counter = new SkipCounter(user,music)
-      user.save()
-      music.save()
       counter.save(flush:true)
     }
   }

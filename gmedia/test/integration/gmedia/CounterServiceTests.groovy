@@ -7,6 +7,7 @@ import org.junit.After
 import gmedia.model.Music
 import gmedia.model.User
 import gmedia.model.PlayCounter
+import gmedia.model.Person
 import gmedia.service.counter.CounterService
 
 class CounterServiceTests extends GrailsUnitTestCase{ 
@@ -19,16 +20,23 @@ class CounterServiceTests extends GrailsUnitTestCase{
     counterService = new CounterService()
     user = new User(name:"fakename",password:"fakePass",email:"fake@email.com")
     user.save(flush:true)
-    music = new Music()
+ 
+    def johnny = new Person(firstName:"Johnny", lastName:"Hallyday")
+    music = new Music(title:"Retiens la nuit",length:20,nbRead:0,nbSkip:0,)
+    johnny.addToMusic(music)
+    johnny.save(flush:true)
     music.save(flush:true)
+
+
+
   }
 
   @Test
   public void playCounterCreation(){ 
     counterService.incrementPlayCounter(user,music)
-    def counter = PlayCounter.findByUser(user).first()
-    def excpectedCounter = new PlayCounter(user,music,1)
-    assertEquals(expectedCounter, counter)
+    def counter = PlayCounter.findByUserAndMusic(user,music)
+    def expectedCounter = new PlayCounter(user:user,music:music)
+    assertEquals(expectedCounter.value, counter.value)
   }
 
   
