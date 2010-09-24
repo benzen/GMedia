@@ -16,6 +16,14 @@
     <body>
       <g:render template="/layouts/header"/>
       <g:render template="/layouts/nav"/>
+      <div class="body">
+	<g:if test="${flash.message}">
+          <div class="message">${flash.message}</div>
+	</g:if>
+	<g:if test="${flash.error}">
+          <div class="errors">${flash.error}</div>
+	</g:if>
+      </div>
       <g:layoutBody/>
     </body>
 </html>
