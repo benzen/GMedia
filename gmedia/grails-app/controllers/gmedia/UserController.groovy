@@ -14,10 +14,8 @@ class UserController {
     }
   }
   def save = {
-    println  params
     params["password"]=params["password"].encodeAsPassword()
     params["confirmPassword"]= params["confirmPassword"].encodeAsPassword()
-    println     params["password"]
     def user = new User(params)
 
     if (user.save(flush: true)) {
@@ -34,9 +32,6 @@ class UserController {
   def login={}
   
   def authenticate = {
-    println "pass"+params.password
-    println "coded pass"+params.password.encodeAsPassword()
-    println "user pass" +User.findByName("ben").password
     def user = User.findByNameAndPassword(params.name, params.password.encodeAsPassword())
     if(user){
       session.user = user
