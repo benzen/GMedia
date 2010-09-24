@@ -16,4 +16,7 @@ class MembershipService {
     def deleteUser(User user){
     user.delete()
     }
+  def getUser(long id){ 
+    User.get(id)
+  }
 }
