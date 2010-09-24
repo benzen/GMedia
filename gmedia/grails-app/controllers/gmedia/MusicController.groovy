@@ -5,6 +5,13 @@ import gmedia.model.Music
 class MusicController {
   def beforeInterceptor =[action:this.&auth]
   def scaffold = Music
+
+  static navigation = [
+    group:'tabs', 
+    order:1, 
+    title:'Play a song', 
+    action:'play'
+  ]
   
   def auth() {
     if(!session.user){

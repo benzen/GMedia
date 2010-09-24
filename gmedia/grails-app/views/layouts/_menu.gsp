@@ -1,0 +1,1 @@
+<nav:render group="tabs"/>

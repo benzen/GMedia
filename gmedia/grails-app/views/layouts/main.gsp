@@ -10,11 +10,13 @@
 	<g:javascript library="jquery" plugin="jquery"/>
 	<jq:plugin name="jplayer"/>
 	<g:javascript library="application" />
+	<nav:resources/>
 	<g:layoutHead />
-
+	
     </head>
     <body>
       <g:render template="/layouts/header"/>
-      <g:layoutBody />
+      <g:render template="/layouts/menu"/>
+      <g:layoutBody/>
     </body>
 </html>

@@ -1,5 +1,7 @@
 package gmedia
 class HomeController{ 
-
-  def index={}
+  static  navigation =true
+  def index={
+    
+  }
 }

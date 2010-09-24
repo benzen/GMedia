@@ -16,8 +16,15 @@ body {
     color: #333;
     font: 11px verdana, arial, helvetica, sans-serif;
 }
-#grailsLogo {
+
+.gmedia-logo {
 	padding:20px;
+}
+.header-main {
+    font-size: 40px
+}
+.header-sub{
+    font-size: 20px
 }
 
 a:link, a:visited, a:hover {
@@ -25,9 +32,12 @@ a:link, a:visited, a:hover {
     font-weight: bold;
     text-decoration: none;
 }
-
+.main-menu{
+    float:left
+    background: #666
+}
 h1 {
-    color: #48802c;
+    color: #bb7700;
     font-weight: normal;
     font-size: 16px;
     margin: .8em 0 .3em 0;
@@ -60,6 +70,7 @@ input:focus, select:focus, textarea:focus {
 .body {
     float: left;
     margin: 0 15px 10px 15px;
+
 }
 
 /* NAVIGATION MENU */
@@ -75,6 +86,7 @@ input:focus, select:focus, textarea:focus {
 .menuButton {
     font-size: 10px;
     padding: 0 5px;
+
 }
 .menuButton a {
     color: #333;
