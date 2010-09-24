@@ -49,4 +49,7 @@ class UserController {
     session.user = null
     redirect(uri:"/")      
   }  
+  def edit={[user:session.user] }
+  def show={[user:session.user] }
+  def index={  redirect action:show  }
 }

@@ -6,6 +6,8 @@ import java.io.FileOutputStream
 
 class UploadService{ 
   static final uploadDirectory = "gmedia-files/upload"
+  def authorizedImageContentType = [ 'image/jpeg' :'jpg', 'image/gif' :'gif', 'image/png' :'png']
+  def authorizedAudioContentType = [ 'audio/mp3':'mp3','audio/ogg':'ogg']
   
   def uploadFile(String path){ 
     def file = new File(path)
