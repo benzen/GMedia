@@ -4,7 +4,7 @@ import gmedia.model.User
 class BootStrap {
 
     def init = { servletContext ->
-      def user = new User(name:"ben", email:"ben@ben.fr", password:"zen")
+      def user = new User(name:"ben", email:"ben@ben.fr", password:"zen",confirmPassword:"zen")
       user.save(flush:true)
       def p = new Person(firstName:"a", lastName:"b")
       p.save(flush:true)

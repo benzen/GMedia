@@ -3,6 +3,7 @@ package gmedia
 import org.junit.Test
 import org.junit.Before
 import org.junit.After
+import org.junit.matchers.JUnitMatchers
 import grails.test.*
 import gmedia.service.membership.MembershipService
 import gmedia.model.User
@@ -19,7 +20,7 @@ class MembershipServiceTests  extends GrailsUnitTestCase{
   public void createUser(){
     service.createUser("fakeuser","fakePass","email@mail.fr")
     def user = new User(name:"fakeuser",password:"fakePass", email:"email@mail.fr")
-    assertEquals([user] ,service.listUser())
+    assertThat(service.listUser(), hasItem(user))
   }
   
   @Test

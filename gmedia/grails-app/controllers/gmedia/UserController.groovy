@@ -18,7 +18,7 @@ class UserController {
     if (user.save(flush: true)) {
       flash.message = "User "+user.name+" succesfully created."
       session.user = user
-      redirect(action: "show", id: user.id)
+      redirect(uri:"/")
     }
     else {
       render(view: "create", model: [user: user])
@@ -32,7 +32,7 @@ class UserController {
     if(user){
       session.user = user
       flash.message = "Hello ${user.name}!"
-      redirect(controller:"home", action:"index")      
+      redirect(uri:"/")      
     }else{
       def username = params?.name ? " "+params.name+"!":"."
       flash.message = "Invalid user${username}"
@@ -43,6 +43,6 @@ class UserController {
   def logout = {
     flash.message = "Goodbye  ${session.user.name}"
     session.user = null
-    redirect( action:'login')      
+    redirect(uri:"/")      
   }  
 }

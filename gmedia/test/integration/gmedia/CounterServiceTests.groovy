@@ -23,6 +23,8 @@ class CounterServiceTests extends GrailsUnitTestCase{
  
     def johnny = new Person(firstName:"Johnny", lastName:"Hallyday")
     music = new Music(title:"Retiens la nuit",length:20,nbRead:0,nbSkip:0,)
+    music.mp3Path("/fake/path.mp3")
+    music.oggPath("/fake/path.ogg")
     johnny.addToMusic(music)
     johnny.save(flush:true)
     music.save(flush:true)
