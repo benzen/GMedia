@@ -20,7 +20,10 @@ class PolicyAdministrationPointServiceTests extends GrailsUnitTestCase {
   public void setUp() {
     pap = new PolicyAdministrationPointService()
     res = new Resource()
-    user = new User(name:"fakeUser",password:"fakePassword",email:"fakeUser@fakeHost.fr")
+    user = new User(name:"fakeUser",
+		    password:"fakePassword",
+		    confirmPassword:"fakePassword",
+		    email:"fakeUser@fakeHost.fr")
     res.save()
     user.save(flush:true)
   }
