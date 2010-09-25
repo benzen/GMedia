@@ -18,15 +18,15 @@ class CounterServiceTests extends GrailsUnitTestCase{
   @Before
   public void setup(){ 
     counterService = new CounterService()
-    user = new User(name:"fakename",password:"fakePass",email:"fake@email.com")
+    user = new User(name:"fakename",password:"fakePass",confirmPassword:"fakePass",email:"fake@email.com")
     user.save(flush:true)
  
     def johnny = new Person(firstName:"Johnny", lastName:"Hallyday")
     music = new Music(title:"Retiens la nuit",length:20,nbRead:0,nbSkip:0,)
-    music.mp3Path("/fake/path.mp3")
-    music.oggPath("/fake/path.ogg")
+    music.mp3Path = "/fake/path.mp3"
+    music.oggPath = "/fake/path.ogg"
     johnny.addToMusic(music)
-    johnny.save(flush:true)
+    johnny.save(flush:true)  
     music.save(flush:true)
 
 

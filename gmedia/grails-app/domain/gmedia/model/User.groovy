@@ -21,10 +21,11 @@ class User extends Resource{
     "User("+name+","+email+")"
   }
 
-  def equals(User u){ 
-    name.equals(u.name)&&
-    password.equals(u.password)&&
-    email.equals(u.email)
+  public boolean equals(Object u){ 
+   return this.name.equals(u.name)&&
+   this.password.equals(u.password)&& 
+   this.email.equals(u.email)
+    
   }
 
 }
