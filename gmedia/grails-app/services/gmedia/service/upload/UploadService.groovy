@@ -19,4 +19,30 @@ class UploadService{
     newFile << file.getText()
     newFile
   }
+  def saveImageFile(imageFile, name, storagePath) {
+    if (!imageFile.empty) {
+      FileNameMap fileNameMap = URLConnection.getFileNameMap();
+      def contentType = fileNameMap.getContentTypeFor(imageFile.originalFilename)
+      
+      if ( authorizedImageContentType.keySet().contains(contentType) ) {
+	File storageDir = new File(storagePath)
+	if (!storageDir.exists()) {
+	  if (!storageDir.mkdir()) {
+	    log.error 'Directory does not exist and cannot be created '+storagePath
+	    return false
+	  }
+	}
+	
+	// Pour un minimum de standardisation, on génère le nom du fichier à enregistré à partir du paramètre
+	// 'name' et du type mime
+	def targetFilename = name + '_logo.' + authorizedImageContentType[contentType]
+	
+	// sauvegarde du fichier
+	imageFile.transferTo( new File(storagePath + targetFilename) )
+        
+	return targetFilename
+      }
+      return false
+    }
+  }
 }

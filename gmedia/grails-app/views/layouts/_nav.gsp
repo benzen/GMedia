@@ -5,7 +5,9 @@
 		<ul>
 		  <li><g:link controller="music">Play random song</g:link></li>
         	  <li><g:link controller="playlist">Manage Playlists</g:link></li>	
-        	  <li><g:link controller="music" action="list">Manage   Track</g:link></li>		
+        	  <li><g:link controller="music" action="list">Manage Track</g:link></li>		
+         	  <li><g:link controller="band" action="list">Manage Band</g:link></li>		 
+           	  <li><g:link controller="album" action="list">Manage Album</g:link></li>		 
 		</ul>
 		<g:if test="${session.user}">
 		<h1>Admin</h1>

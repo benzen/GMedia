@@ -11,17 +11,17 @@ import gmedia.model.User
 class Band {
 
   static hasMany = [albums: Album, styles:Style]
-
-	String name
-	String logoPath
-	String webSite
-
-	Date dateCreated
-	Date lastUpdated
-
-	static constraints = {
-	  name(nullable:false, emtpy:false)
-		description(nullable:false)
-		webSite(url:true)
-	}
+  
+  String name
+  String logoPath
+  String webSite
+  
+  Date dateCreated
+  Date lastUpdated
+  
+  static constraints = {
+    name(nullable:false, emtpy:false)
+    description(nullable:false)
+    webSite(url:true)
+  }
 }
