@@ -25,7 +25,7 @@ class PolicyEnforcementPointServiceTests extends GrailsUnitTestCase {
     pep = new PolicyEnforcementPointService()
     pep.pap = pap
 
-    user = new User(name:"fakeUser",password:"fakePass",email:"fakeUser@fakeMail.com")
+    user = new User(name:"fakeUser",password:"fakePass",confirmPassword:"fakePass",email:"fakeUser@fakeMail.com")
     res =  new Resource()
         
     res.save()
