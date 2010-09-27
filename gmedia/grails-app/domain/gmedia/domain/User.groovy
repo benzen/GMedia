@@ -12,7 +12,7 @@ class User extends Resource{
     name(blank:false)
     email(email:true)
     password(blank:false, password:true)
-    confirmPassword(blanck:false, password:true,validator :{val, obj ->
+    confirmPassword(blank:false, password:true,validator :{val, obj ->
       if (obj.password != val) {
 	return 'default.invalid.confirmPasswd.message'
       }})}

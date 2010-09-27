@@ -9,8 +9,8 @@ class UserControllerTests extends ControllerUnitTestCase {
 
     protected void setUp() {
         super.setUp()
-	String.metaClass.encodeAsPassword={ id->id}
-	mockForConstraintsTests(User)
+	String.metaClass.encodeAsPassword={delegate}
+
     }
 
     protected void tearDown() {
@@ -18,16 +18,16 @@ class UserControllerTests extends ControllerUnitTestCase {
     }
 
     void testSaveComplete() {
-      mockParams["name"]="fakeUser"
-      mockParams["email"]="fake@mail.fr"
-      mockParams["password"]="fakePass"
-      mockParams["confirmPassword"]="fakePass"
-
+      mockParams.name="fakeUser"
+      mockParams.email="fake@mail.fr"
+      mockParams.password="fakePass"
+      mockParams.confirmPassword="fakePass"
+       
       def testInstance= []
       mockDomain(User,testInstance)
-
+      mockForConstraintsTests(User)
       controller.save()
-      println testInstance
+        
       assertEquals "User fakeUser succesfully created.", mockFlash.message
       assertNull mockFlash.error
       
@@ -37,7 +37,7 @@ class UserControllerTests extends ControllerUnitTestCase {
       mockParams["name"]="fakeUser"
       mockParams["email"]="fake@mail.fr"
       mockParams["password"]="fakePass"
-      mockParams["confirmPassword"]="fakePass"
+      mockParams["confirmPassword"]=""
       mockDomain(User,[])
       controller.save(mockParams)
       assertEquals "Error when creating user fakeUser.", mockFlash.error

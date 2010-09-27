@@ -16,6 +16,7 @@ class UserController {
   def save = {
     params["password"]=params["password"].encodeAsPassword()
     params["confirmPassword"]= params["confirmPassword"].encodeAsPassword()
+
     def user = new User(params)
 
     if (user.save(flush: true)) {
@@ -23,7 +24,7 @@ class UserController {
       session.user = user
       redirect(uri:"/")
     }
-    else {
+    else{
       flash.error = "Error when creating user "+user.name+"."
       redirect(controller: "user", action:"create")
     }
