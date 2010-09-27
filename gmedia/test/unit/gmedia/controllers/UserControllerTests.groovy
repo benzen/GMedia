@@ -10,6 +10,7 @@ class UserControllerTests extends ControllerUnitTestCase {
     protected void setUp() {
         super.setUp()
 	String.metaClass.encodeAsPassword={ id->id}
+	mockForConstraintsTests(User)
     }
 
     protected void tearDown() {
@@ -21,8 +22,10 @@ class UserControllerTests extends ControllerUnitTestCase {
       mockParams["email"]="fake@mail.fr"
       mockParams["password"]="fakePass"
       mockParams["confirmPassword"]="fakePass"
+
       def testInstance= []
       mockDomain(User,testInstance)
+
       controller.save()
       println testInstance
       assertEquals "User fakeUser succesfully created.", mockFlash.message
