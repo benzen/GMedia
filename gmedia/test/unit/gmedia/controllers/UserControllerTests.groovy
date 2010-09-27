@@ -30,6 +30,8 @@ class UserControllerTests extends ControllerUnitTestCase {
         
       assertEquals "User fakeUser succesfully created.", mockFlash.message
       assertNull mockFlash.error
+      assertEquals "fakeUser", controller.session.user.name
+      assertEquals "/", controller.redirectArgs.uri
       
     }
   
@@ -42,6 +44,9 @@ class UserControllerTests extends ControllerUnitTestCase {
       controller.save(mockParams)
       assertEquals "Error when creating user fakeUser.", mockFlash.error
       assertNull mockFlash.message
+      assertNull controller.session.user
+      assertEquals "create", controller.redirectArgs.action 
+      assertEquals "user", controller.redirectArgs.controller
     }
 
 }
