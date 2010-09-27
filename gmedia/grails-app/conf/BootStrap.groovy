@@ -1,6 +1,6 @@
-import gmedia.model.Music
-import gmedia.model.Person
-import gmedia.model.User
+import gmedia.domain.Music
+import gmedia.domain.Person
+import gmedia.domain.User
 class BootStrap {
 
     def init = { servletContext -> 

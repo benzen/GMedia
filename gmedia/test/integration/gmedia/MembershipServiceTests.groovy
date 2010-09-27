@@ -8,7 +8,7 @@ import static org.junit.Assert.assertFalse
 import static org.junit.matchers.JUnitMatchers.hasItem
 import grails.test.*
 import gmedia.service.membership.MembershipService
-import gmedia.model.User
+import gmedia.domain.User
 
 class MembershipServiceTests  extends GrailsUnitTestCase{ 
   def service

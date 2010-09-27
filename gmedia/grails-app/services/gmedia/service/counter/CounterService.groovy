@@ -1,9 +1,9 @@
 package gmedia.service.counter
 
-import gmedia.model.Music
-import gmedia.model.User
-import gmedia.model.PlayCounter
-import gmedia.model.SkipCounter
+import gmedia.domain.Music
+import gmedia.domain.User
+import gmedia.domain.PlayCounter
+import gmedia.domain.SkipCounter
 
 class CounterService{ 
 

@@ -4,10 +4,10 @@ import grails.test.*
 import org.junit.Test
 import org.junit.Before
 import org.junit.After
-import gmedia.model.Music
-import gmedia.model.User
-import gmedia.model.PlayCounter
-import gmedia.model.Person
+import gmedia.domain.Music
+import gmedia.domain.User
+import gmedia.domain.PlayCounter
+import gmedia.domain.Person
 import gmedia.service.counter.CounterService
 
 class CounterServiceTests extends GrailsUnitTestCase{ 

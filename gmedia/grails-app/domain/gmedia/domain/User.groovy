@@ -1,4 +1,4 @@
-package gmedia.model
+package gmedia.domain
 
 class User extends Resource{
   String name

@@ -1,5 +1,5 @@
-package gmedia.model
-import gmedia.model.Person
+package gmedia.domain
+
 import java.io.File
 
 class Music extends Resource{

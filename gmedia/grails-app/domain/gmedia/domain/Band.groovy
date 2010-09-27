@@ -1,6 +1,4 @@
-package gmedia.model
-
-import gmedia.model.User
+package gmedia.domain
 
 /**
  * Classe de domaine représentant un groupe de musique.

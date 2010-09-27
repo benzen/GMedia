@@ -1,5 +1,5 @@
-package gmedia
-import gmedia.model.User
+package gmedia.controllers
+import gmedia.domain.User
 
 class UserController {
   

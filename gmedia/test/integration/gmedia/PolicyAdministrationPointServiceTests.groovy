@@ -2,9 +2,9 @@ package gmedia
 
 import grails.test.*
 import gmedia.service.policyAdministrationPoint.PolicyAdministrationPointService
-import gmedia.model.User
-import gmedia.model.Resource
-import gmedia.model.Policy
+import gmedia.domain.User
+import gmedia.domain.Resource
+import gmedia.domain.Policy
 import org.junit.Test
 import org.junit.After
 import org.junit.Before

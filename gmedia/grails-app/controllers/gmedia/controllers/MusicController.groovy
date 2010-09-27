@@ -1,6 +1,6 @@
-package gmedia
+package gmedia.controllers
 
-import gmedia.model.Music
+import gmedia.domain.Music
 
 class MusicController {
   def beforeInterceptor =[action:this.&auth]

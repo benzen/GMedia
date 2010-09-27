@@ -1,6 +1,6 @@
-package gmedia
+package gmedia.controllers
 
-import gmedia.model.Band
+import gmedia.domain.Band
 import gmedia.service.upload.UploadService
 
 class BandController {

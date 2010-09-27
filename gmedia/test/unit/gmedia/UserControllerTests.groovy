@@ -1,7 +1,9 @@
 package gmedia
 
 import grails.test.*
-import gmedia.model.User
+import gmedia.domain.User
+import static org.junit.Assert.assertEquals
+import static org.junit.Assert.assertNull
 class UserControllerTests extends ControllerUnitTestCase {
   
 
@@ -14,12 +16,29 @@ class UserControllerTests extends ControllerUnitTestCase {
         super.tearDown()
     }
 
-    void testSave() {
+    void testSaveComplete() {
+      mockParams["name"]="fakeUser"
+      mockParams["email"]="fake@mail.fr"
+      mockParams["password"]="fakePass"
+      mockParams["confirmPassword"]="fakePass"
+      def testInstance= []
+      mockDomain(User,testInstance)
+      controller.save()
+      println testInstance
+      assertEquals "User fakeUser succesfully created.", mockFlash.message
+      assertNull mockFlash.error
+      
+    }
+  
+  void testSaveFail() {
       mockParams["name"]="fakeUser"
       mockParams["email"]="fake@mail.fr"
       mockParams["password"]="fakePass"
       mockParams["confirmPassword"]="fakePass"
       mockDomain(User,[])
       controller.save(mockParams)
+      assertEquals "Error when creating user fakeUser.", mockFlash.error
+      assertNull mockFlash.message
     }
+
 }

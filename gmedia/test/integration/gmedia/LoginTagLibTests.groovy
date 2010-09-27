@@ -1,7 +1,7 @@
 package gmedia
 
 import grails.test.*
-import gmedia.model.User
+import gmedia.domain.User
 class LoginTagLibTests extends TagLibUnitTestCase {
 
   void setUp() {

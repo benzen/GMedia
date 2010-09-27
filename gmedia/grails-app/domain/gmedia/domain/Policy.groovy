@@ -1,5 +1,4 @@
-package gmedia.model
-import gmedia.model.Resource
+package gmedia.domain
 
 class Policy extends Resource{
 

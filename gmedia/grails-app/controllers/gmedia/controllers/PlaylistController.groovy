@@ -1,6 +1,6 @@
-package gmedia
+package gmedia.controllers
 
-import gmedia.model.Playlist
+import gmedia.domain.Playlist
 
 class PlaylistController {
 

@@ -1,6 +1,5 @@
-package gmedia.model
-import gmedia.User
-import gmedia.Music
+package gmedia.domain
+
 
 class Counter{
   User user

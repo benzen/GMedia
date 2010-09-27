@@ -1,5 +1,5 @@
-package gmedia
-import gmedia.model.Person
+package gmedia.controllers
+import gmedia.domain.Person
 class PersonController {
 
 def beforeInterceptor = [action:this.&auth]
