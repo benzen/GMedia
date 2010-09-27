@@ -58,5 +58,5 @@ class UserController {
   }  
   def edit={[user:session.user] }
   def show={[user:session.user] }
-  def index={  redirect action:show  }
+  def index={  redirect controller:"user", action:"show"  }
 }

@@ -6,11 +6,14 @@ import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertNull
 class UserControllerTests extends ControllerUnitTestCase {
   
-
+  User user;
     protected void setUp() {
         super.setUp()
 	String.metaClass.encodeAsPassword={delegate}
-
+	user = new User(name:"fakeUser",
+			email:"fake@mail.fr",
+			    password:"fakePass",
+			    confirmPassword:"fakePass")
     }
 
     protected void tearDown() {
@@ -71,10 +74,6 @@ class UserControllerTests extends ControllerUnitTestCase {
   def testAuthenticateValidUser(){ 
     mockParams.name="fakeUser"
     mockParams.password="fakePass"
-    def user = new User(name:"fakeUser",
-			email:"fake@mail.fr",
-			password:"fakePass",
-			confirmPassword:"fakePass")
     mockDomain(User,[user])
 
     controller.authenticate()
@@ -104,10 +103,7 @@ class UserControllerTests extends ControllerUnitTestCase {
     assertEquals "user", controller.redirectArgs.controller
   }
   def testLogout(){ 
-    def user = new User(name:"fakeUser",
-			email:"fake@mail.fr",
-			password:"fakePass",
-			confirmPassword:"fakePass")
+
     mockDomain(User,[user])
 
     mockSession.user = user
@@ -118,6 +114,24 @@ class UserControllerTests extends ControllerUnitTestCase {
     assertNull mockSession.user
     assertEquals "/",controller.redirectArgs.uri
     
+  }
+
+  def testEdit(){ 
+    mockSession.user = user
+    def result = [user:user]
+    assertEquals result, controller.edit()
+  }
+
+  def testShow(){ 
+    mockSession.user = user
+    def result = [user:user]
+    assertEquals result, controller.show()
+  }
+
+  def testIndex(){ 
+    controller.index()
+    assertEquals "user", controller.redirectArgs.controller
+    assertEquals "show", controller.redirectArgs.action
   }
 
 }
