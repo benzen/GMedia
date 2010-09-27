@@ -48,5 +48,47 @@ class UserControllerTests extends ControllerUnitTestCase {
       assertEquals "create", controller.redirectArgs.action 
       assertEquals "user", controller.redirectArgs.controller
     }
+  def testAuthRejected(){ 
+    mockSession.user= null
+    assertFalse controller.auth()
+    assertEquals mockFlash.message,  "Log before do that"
+    assertEquals "login", controller.redirectArgs.action
+    assertEquals "user", controller.redirectArgs.controller
+  }
+
+  def testAuthAccepted(){ 
+    mockSession.user="user"
+    controller.auth()
+  }
+  
+  def testAuthenticateValidUser(){ 
+    mockParams.name="fakeUser"
+    mockParams.password="fakePass"
+    def user = new User(name:"fakeUser",
+			email:"fake@mail.fr",
+			password:"fakePass",
+			confirmPassword:"fakePass")
+    mockDomain(User,[user])
+    controller.authenticate()
+    assertEquals user, controller.session.user
+    assertEquals "Hello fakeUser!", mockFlash.message.toString()
+    assertEquals "/", controller.redirectArgs.uri
+  }
+  def testAuthenticateInvalidUserWithName(){ 
+    mockParams.name="fakeuser"
+    mockParams.password="fakePass"
+    mockDomain(User,[])
+    controller.authenticate()
+    assertEquals "Invalid user fakeuser!", mockFlash.error.toString()
+    assertEquals "login", controller.redirectArgs.action
+    assertEquals "user", controller.redirectArgs.controller
+  }
+  def testAuthenticateInvalidUserWithoutName(){ 
+    mockDomain(User,[])
+    controller.authenticate()
+    assertEquals "Invalid user!", mockFlash.error.toString()
+    assertEquals "login", controller.redirectArgs.action
+    assertEquals "user", controller.redirectArgs.controller
+  }
 
 }

@@ -33,14 +33,20 @@ class UserController {
   def login={}
   
   def authenticate = {
-    def user = User.findByNameAndPassword(params.name, params.password.encodeAsPassword())
-    if(user){
-      session.user = user
-      flash.message = "Hello ${user.name}!"
-      redirect(uri:"/")      
-    }else{
-      def username = params?.name ? " "+params.name+"!":"."
-      flash.error = "Invalid user${username}"
+    if(params.name || params.password?.encodeAsPassword()){ 
+      def user = User.findByNameAndPassword(params.name, params.password.encodeAsPassword())
+      
+      if(user){
+	session.user = user
+	flash.message = "Hello ${user.name}!"
+	redirect(uri:"/")      
+      }else{
+	flash.error = "Invalid user ${params.name}!"
+	redirect(controller:"user", action:"login")
+      }
+    }
+    else{ 
+      flash.error = "Invalid user!"
       redirect(controller:"user", action:"login")
     }
   }
