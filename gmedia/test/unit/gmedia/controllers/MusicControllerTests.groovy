@@ -1,4 +1,4 @@
-package gmedia
+package gmedia.controllers
 import static org.junit.Assert.assertFalse
 import grails.test.*
 

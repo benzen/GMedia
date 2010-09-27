@@ -1,4 +1,4 @@
-package gmedia
+package gmedia.domain
 
 import grails.test.*
 
