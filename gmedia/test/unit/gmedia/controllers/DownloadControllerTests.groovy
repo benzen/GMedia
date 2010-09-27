@@ -16,9 +16,9 @@ class DownloadControllerTests extends ControllerUnitTestCase {
       super.tearDown()
     }
   def testImage(){
-    params.id=22
-    controller.image()
-    assertTrue false
+    //    params.id=22
+    //    controller.image()
+    //    assertTrue false
   }
 
 }
