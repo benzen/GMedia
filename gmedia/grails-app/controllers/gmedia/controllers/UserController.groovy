@@ -52,7 +52,7 @@ class UserController {
   }
   
   def logout = {
-    flash.message = "Goodbye  ${session.user.name}"
+    flash.message = "Goodbye ${session.user.name}."
     session.user = null
     redirect(uri:"/")      
   }  
