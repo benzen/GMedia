@@ -1,4 +1,4 @@
-<%@ page import="gmedia.model.User" %>
+<%@ page import="gmedia.domain.User" %>
 <html>
   <head>
     <meta name="layout" content="main" />
