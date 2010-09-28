@@ -6,9 +6,9 @@ package gmedia.domain
  * @author Benjamin Dreux(benjiiiiii@gmail.com)
  *
  */
-class Band {
+class Band extends Person{
 
-  static hasMany = [albums: Album, styles:Style]
+  static hasMany = [albums: Album, styles:Style, members:Person]
   
   String name
   String logoPath
@@ -18,8 +18,12 @@ class Band {
   Date lastUpdated
   
   static constraints = {
-    name(nullable:false, emtpy:false)
+    name(nullable:false, emtpy:false, validator:{val,obj->
+        val.equals(obj.firstName+" "+obj.lastName)
+        })
     description(nullable:false)
-    webSite(url:true)
+    webSite(url:true, nullable:true)
+    logopath(nullable:true)
+    
   }
 }
