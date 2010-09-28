@@ -1,5 +1,11 @@
 package gmedia
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class LoginTagLib {
   def loginControl = {
     if(session.user){

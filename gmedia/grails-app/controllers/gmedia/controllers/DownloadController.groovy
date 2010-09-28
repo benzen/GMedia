@@ -1,5 +1,11 @@
 package gmedia.controllers
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class DownloadController {
     
    def images = {

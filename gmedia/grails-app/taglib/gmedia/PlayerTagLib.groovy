@@ -1,5 +1,11 @@
 package gmedia
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class PlayerTagLib {
  def playSingleMusic={
     attrs -> 

@@ -5,6 +5,12 @@ import gmedia.domain.User
 import gmedia.domain.PlayCounter
 import gmedia.domain.SkipCounter
 
+/**
+  * CounterService is responsible to create and maintain all type of counters
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class CounterService{ 
 
   def incrementPlayCounter(User user, Music music){ 

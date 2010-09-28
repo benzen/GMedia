@@ -2,6 +2,12 @@ package gmedia.controllers
 
 import gmedia.domain.Music
 
+
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
 class MusicController {
   def beforeInterceptor =[action:this.&auth]
   def scaffold = Music

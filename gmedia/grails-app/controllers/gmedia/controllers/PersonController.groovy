@@ -1,6 +1,13 @@
 package gmedia.controllers
 
 import gmedia.domain.Person
+
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class PersonController {
 
 def beforeInterceptor = [action:this.&auth]

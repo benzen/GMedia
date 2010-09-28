@@ -4,6 +4,13 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 
+
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class UploadService{ 
   static final uploadDirectory = "gmedia-files/upload"
   def authorizedImageContentType = [ 'image/jpeg' :'jpg', 'image/gif' :'gif', 'image/png' :'png']

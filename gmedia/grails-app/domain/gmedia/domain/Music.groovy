@@ -2,6 +2,12 @@ package gmedia.domain
 
 import java.io.File
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class Music extends Resource{
 
   static belongsTo = [author:Person, album:Album]

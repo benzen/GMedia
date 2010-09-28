@@ -1,5 +1,11 @@
 package gmedia.controllers
 import gmedia.domain.Album
+
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
 class AlbumController {
 		
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]

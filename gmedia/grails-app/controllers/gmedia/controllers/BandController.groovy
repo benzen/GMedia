@@ -3,6 +3,12 @@ package gmedia.controllers
 import gmedia.domain.Band
 import gmedia.service.upload.UploadService
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class BandController {
   
   def scaffold= Band

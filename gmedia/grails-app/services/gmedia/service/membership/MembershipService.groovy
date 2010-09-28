@@ -1,6 +1,11 @@
 package gmedia.service.membership
 import gmedia.domain.User
 
+/**
+  * A dummy service, don't really need it.
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
 class MembershipService {
 
     static transactional = true

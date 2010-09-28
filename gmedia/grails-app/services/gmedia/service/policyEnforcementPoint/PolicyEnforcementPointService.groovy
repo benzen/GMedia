@@ -2,6 +2,12 @@ package gmedia.service.policyEnforcementPoint
 import gmedia.domain.User
 import gmedia.domain.Resource
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class PolicyEnforcementPointService {
 
   def pap

@@ -1,6 +1,12 @@
 package gmedia.controllers
 import gmedia.domain.User
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class UserController {
   
   def scaffold = User

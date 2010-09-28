@@ -1,5 +1,11 @@
 package gmedia.domain
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class User extends Resource{
   String name
   String password

@@ -2,6 +2,13 @@ package gmedia.service.policyAdministrationPoint
 import gmedia.domain.User
 import gmedia.domain.Resource
 import gmedia.domain.Policy
+
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class PolicyAdministrationPointService {
   
   static transactional = true

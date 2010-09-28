@@ -3,6 +3,12 @@ package gmedia.service.player
 import gmedia.domain.Music
 import gmedia.domain.User
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class PlayerService {
   
   def counterService

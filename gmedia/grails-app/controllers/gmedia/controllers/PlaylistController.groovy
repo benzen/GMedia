@@ -2,6 +2,12 @@ package gmedia.controllers
 
 import gmedia.domain.Playlist
 
+/**
+  *
+  * @author Benjamin Dreux(benjiiiiii@gmail.com)
+  */
+
+
 class PlaylistController {
 
   def scaffold = Playlist
