@@ -6,11 +6,10 @@ package gmedia.domain
  * @author Benjamin Dreux(benjiiiiii@gmail.com)
  *
  */
-class Band extends Person{
+class Band extends Author{
 
-  static hasMany = [albums: Album, styles:Style, members:Person]
+  static hasMany = [members:Person]
   
-  String name
   String logoPath
   String webSite
   
@@ -18,12 +17,7 @@ class Band extends Person{
   Date lastUpdated
   
   static constraints = {
-    name(nullable:false, emtpy:false, validator:{val,obj->
-        val.equals(obj.firstName+" "+obj.lastName)
-        })
-    description(nullable:false)
     webSite(url:true, nullable:true)
     logopath(nullable:true)
-    
   }
 }

@@ -8,15 +8,13 @@ import java.io.File
   */
 
 
-class Music extends Resource{
+class Music{
 
-  static belongsTo = [author:Person, album:Album]
+  static belongsTo = [author:Author, album:Album]
   String title
   int length=0
   int nbRead=0
   int nbSkip=0
-  Person author
-  Album album
   String mp3Path
   String oggPath
 }

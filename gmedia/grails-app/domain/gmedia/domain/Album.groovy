@@ -8,7 +8,7 @@ package gmedia.domain
 
 class Album {
 
-	static belongsTo = [band: Band]
+	static belongsTo = [author: Author]
 	static hasMany = [tracks: Music,styles:Style]
 
 	String name
@@ -17,6 +17,7 @@ class Album {
 	Date lastUpdated
 
 	static constraints = {
-		name(nullable:false)	
+		name(nullable:false)
+		logoPath(nullable:true)	
 	}
 }

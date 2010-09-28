@@ -6,10 +6,7 @@ package gmedia.domain
   */
 
 
-class Person extends Resource{
+class Person extends Author{
 
-  static hasMany=[music:Music]
-  String firstName
-  String lastName       
-  
+
 }
