@@ -35,13 +35,17 @@
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="band.albums.label" default="Albums" /></td>
-                            
-                            <td valign="top" style="text-align: left;" class="value">
+                            <td valign="top" style="text-align: left;" class="value">                            
+                              <g:if test="${bandInstance.albums.size() == 0}">
+                               <g:message code="band.albums.notDefined" default="This band as no album"/>
+                              </g:if>
+                              <g:else>
                                 <ul>
-                                <g:each in="${bandInstance.albums}" var="a">
-                                    <li><g:link controller="album" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
-                                </g:each>
+                                  <g:each in="${bandInstance.albums}" var="a">
+                                    <li><g:link controller="album" action="show" id="${a.id}">${a?.name?.encodeAsHTML()}</g:link></li>
+                                  </g:each>
                                 </ul>
+                            </g:else>
                             </td>
                             
                         </tr>
@@ -61,7 +65,15 @@
                         </tr>
                     
                         <tr class="prop">
-			<img src="${createLink(controller:'dl', action:'images', params: [id: bandInstance.logoPath])}"/>                         
+                          <td valign="top" class="name"><g:message code="band.logoPath.label" default="Logo" /></td>
+                          <td valign="top" class="value">
+                            <g:if test="${bandInstance.logoPath}">
+        		      <img src="${createLink(controller:'dl', action:'images', params: [id: bandInstance.logoPath])}"/>                         
+        		    </g:if>
+        		    <g:else>
+        		      <g:message code="image.logo.notDefined" default="No logo are defined"/>
+        		    </g:else>
+        		  </td>
                         </tr>
                     
                         <tr class="prop">

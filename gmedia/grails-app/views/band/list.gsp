@@ -21,38 +21,31 @@
                 <table>
                     <thead>
                         <tr>
-                        
-                            <g:sortableColumn property="id" title="${message(code: 'band.id.label', default: 'Id')}" />
-                        
-                            <g:sortableColumn property="name" title="${message(code: 'band.name.label', default: 'Name')}" />
-                        
+                                             
+                            <g:sortableColumn property="name" title="${message(code: 'band.name.label', default: 'Name')}" />                       
+                            <g:sortableColumn property="albums" title="${message(code:'band.albums.label',default:'Album')}"/>
+                            <g:sortableColumn property="styles" title="${message(code:'band.styles.label',default:'Styles')}"/>
+                            <g:sortableColumn property="members" title="${message(code:'band.members.label',default:'Members')}"/>
                             <g:sortableColumn property="webSite" title="${message(code: 'band.webSite.label', default: 'Web Site')}" />
-                        
-                            <g:sortableColumn property="dateCreated" title="${message(code: 'band.dateCreated.label', default: 'Date Created')}" />
-                        
-                            <g:sortableColumn property="lastUpdated" title="${message(code: 'band.lastUpdated.label', default: 'Last Updated')}" />
-                        
-                            <g:sortableColumn property="logoPath" title="${message(code: 'band.logoPath.label', default: 'Logo Path')}" />
-                        
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${bandInstanceList}" status="i" var="bandInstance">
+                      <g:link action="show" id="${bandInstance.id}">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
-                        
-                            <td><g:link action="show" id="${bandInstance.id}">${fieldValue(bean: bandInstance, field: "id")}</g:link></td>
-                        
                             <td>${fieldValue(bean: bandInstance, field: "name")}</td>
-                        
+                            <td><g:each in="${bandInstance.albums}" var="a" status="j"  >
+                                ${a.name}<g:if test="${!bandInstance.albums.size()==j}">,</g:if>
+                              </g:each></td>
+                            <td><g:each in="${bandInstance.styles}" var="s" status="k"  >
+                                ${s.name}<g:if test="${!bandInstance.styles.size()==k}">,</g:if>
+                              </g:each></td>
+                            <td><g:each in="${bandInstance.members}" var="m" status="l"  >
+                                ${m.name}<g:if test="${!bandInstance.members.size()==l}">,</g:if>
+                              </g:each></td>
                             <td>${fieldValue(bean: bandInstance, field: "webSite")}</td>
-                        
-                            <td><g:formatDate date="${bandInstance.dateCreated}" /></td>
-                        
-                            <td><g:formatDate date="${bandInstance.lastUpdated}" /></td>
-                        
-                            <td>${fieldValue(bean: bandInstance, field: "logoPath")}</td>
-                        
                         </tr>
+                        </g:link>
                     </g:each>
                     </tbody>
                 </table>
