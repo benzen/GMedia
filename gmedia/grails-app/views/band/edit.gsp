@@ -75,7 +75,21 @@
                                     <g:textField name="webSite" value="${bandInstance?.webSite}" />
                                 </td>
                             </tr>
-                        
+                            
+                            <tr class="prop">
+                              <td valign="top" class="name">
+                                <label for="members"><g:message code="band.members.label" default="Members" /></label>
+                              </td>
+                              <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'members', 'errors')}">
+                                <ul>
+                                  <g:each in="${bandInstance?.members?}" var="m">
+                                    <li><g:link controller="person" action="show" id="${m.id}">${m?.encodeAsHTML()}</g:link></li>
+                                  </g:each>
+                                </ul>
+                                <g:link controller="person" action="create" params="['band.id': bandInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'person.label', default: 'Member')])}</g:link>
+
+                                </td>
+
                             <tr class="prop">
                                 <td valign="top" class="name">
                                   <label for="albums"><g:message code="band.albums.label" default="Albums" /></label>

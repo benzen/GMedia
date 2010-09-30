@@ -25,19 +25,34 @@
                             <td valign="top" class="value">${fieldValue(bean: bandInstance, field: "name")}</td>
                             
                         </tr>
-                    
+                        
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="band.webSite.label" default="Web Site" /></td>
-                            
                             <td valign="top" class="value">${fieldValue(bean: bandInstance, field: "webSite")}</td>
-                            
                         </tr>
+                        
+                        <tr class="prop">
+                          <td valign="top" class="name"><g:message code="band.members.label" default="Members" /></td>
+                          <td valign="top" style="text-align: left;" class="value">                            
+                            <g:if test="${bandInstance.members.size() == 0}">
+                              <g:message code="band.members.notDefined" default="This band has no members"/>
+                            </g:if>
+                            <g:else>
+                              <ul>
+                                <g:each in="${bandInstance.albums}" var="a">
+                                  <li><g:link controller="album" action="show" id="${a.id}">${a?.name?.encodeAsHTML()}</g:link></li>
+                                </g:each>
+                              </ul>
+                            </g:else>
+                            </td>
+                        </tr>
+
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="band.albums.label" default="Albums" /></td>
                             <td valign="top" style="text-align: left;" class="value">                            
                               <g:if test="${bandInstance.albums.size() == 0}">
-                               <g:message code="band.albums.notDefined" default="This band as no album"/>
+                               <g:message code="band.albums.notDefined" default="This band has no albums"/>
                               </g:if>
                               <g:else>
                                 <ul>

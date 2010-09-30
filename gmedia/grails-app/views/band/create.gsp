@@ -7,6 +7,32 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'band.label', default: 'Band')}" />
         <title><g:message code="default.create.label" args="[entityName]" /></title>
+        <g:javascript plugin="jquery">
+
+         function addStyle(){
+                  $('.additionalStyles').children("ul").append("<li>"+$(".autocompleteField").val()+"</li>");
+                  var prev = $('.styles').val()
+                  if(prev != ""){
+                    $('.styles').val($('.styles').val()+","+$(".autocompleteField").val());
+                  }else{
+                    $('.styles').val($(".autocompleteField").val());
+                  }
+                  $(".autocompleteField").val("");
+                  
+                }
+         
+         
+                $(".autocompleteField").autocomplete({source:[
+                <g:each var="style" in="${gmedia.domain.Style.list()}">
+                 "${style.name}"
+                 <g:unless test="${gmedia.domain.Style.list().last() == style}">
+                 +","+
+                 </g:unless>
+                </g:each>
+                ]});
+
+        </g:javascript>
+
     </head>
     <body>
         <div class="nav">
@@ -15,9 +41,6 @@
         </div>
         <div class="body">
             <h1><g:message code="default.create.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
             <g:hasErrors bean="${bandInstance}">
             <div class="errors">
                 <g:renderErrors bean="${bandInstance}" as="list" />
@@ -37,13 +60,60 @@
                                 </td>
                             </tr>
                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="albums"><g:message code="band.albums.label" default="Albums" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'albums', 'errors')}">
+                                    
+                                <ul>
+                                  <g:each in="${bandInstance?.albums?}" var="a">
+                                    <li><g:link controller="album" action="show" id="${a.id}">${a?.encodeAsHTML()}</g:link></li>
+                                  </g:each>
+                                </ul>
+                                <g:link controller="album" action="create" params="['band.id': bandInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'album.label', default: 'Album')])}</g:link>
+
+                                </td>
+                            </tr>
+                            <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="members"><g:message code="band.members.label" default="members" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'members', 'errors')}">
+                                    
+                                <ul>
+                                  <g:each in="${bandInstance?.members?}" var="m">
+                                    <li><g:link controller="person" action="show" id="${m.id}">${m?.name?.encodeAsHTML()}</g:link></li>
+                                  </g:each>
+                                </ul>
+                                <g:link controller="person" action="create" params="['band.id': bandInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'person.label', default: 'Member')])}</g:link>
+
+                                </td>
+                            </tr>
+                            
+                            <tr class="prop">
                               <td valign="top" class="name">
                                  <label for="logoPath"><g:message code="band.logoPath.label" default="Logo Path" /></label>
                               </td>
                               <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'logoPath', 'errors')}">
                                  <input type="file" name="logoFile"/>
                               </td>
-                            </tr>                        
+                            </tr>
+                            <tr class="prop">
+                              <td valign="top" class="name">
+                                <label for="stylesField">
+                                  <g:message code="band.styles.label" default="Styles" />
+                                </label>
+                              </td>
+                                <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'styles', 'errors')}">
+                                    <g:textField class="autocompleteField" name="stylesField"/>
+                                    <a href="#" onClick="addStyle()">add Style</a>
+                                   <div class="additionalStyles"><ul></ul></div>
+                                   <g:hiddenField name="styles" class="styles"/>
+
+
+                                </td>
+                            </tr>
+                                                                                
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="webSite"><g:message code="band.webSite.label" default="Web Site" /></label>

@@ -24,6 +24,7 @@ class BandController {
   }
 
   def save = {
+    convertStyleNameToStyles(params)
     def bandInstance = new Band(params)
     if(params.logoPath){
       // saving image File with the UploadService
@@ -43,53 +44,44 @@ class BandController {
   }
   
   def update = {
-        if (params.stylesField &&params.stylesField!=""){
-          params.styles = params.styles +","+params.stylesField
+    convertStyleNameToStyles(params)
+    def bandInstance = Band.get(params.id)
+    if (bandInstance) {
+      if (params.version) {
+        def version = params.version.toLong()
+        if (bandInstance.version > version) {
+          bandInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'band.label', default: 'Band')] as Object[], "Another user has updated this Band while you were editing")
+          render(view: "edit", model: [bandInstance: bandInstance])
+          return
         }
-        
-        params.styles = params.styles.split(",").collect{s-> 
-                 def styleS = Style.findByName(s)
-                if(!styleS){
-                  def newStyle = new Style(name:s)
-                  newStyle.save(flush:true)
-                  newStyle
-                }else{
-                  styleS
-                }
-        }
-        def bandInstance = Band.get(params.id)
-        if (bandInstance) {
-            if (params.version) {
-                def version = params.version.toLong()
-                if (bandInstance.version > version) {
-                    
-                    bandInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'band.label', default: 'Band')] as Object[], "Another user has updated this Band while you were editing")
-                    render(view: "edit", model: [bandInstance: bandInstance])
-                    return
-                }
-            }
-            def bandStyles = params.styles
-//            params.remove("styles")
-            bandInstance.properties = params           
-//            bandInstance.styles= 
-//            bandStyles.each{
-//                bandInstance.addToStyles(it)
-//            }
-
-            if (!bandInstance.hasErrors() && bandInstance.save(flush: true)) {
-                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'band.label', default: 'Band'), bandInstance.id])}"
-                redirect(action: "show", id: bandInstance.id)
-            }
-            else {
-                render(view: "edit", model: [bandInstance: bandInstance])
-            }
-        }
-        else {
-            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
-            redirect(action: "list")
-        }
-
+      }
+      bandInstance.properties = params           
+      if (!bandInstance.hasErrors() && bandInstance.save(flush: true)) {
+        flash.message = "${message(code: 'default.updated.message', args: [message(code: 'band.label', default: 'Band'), bandInstance.id])}"
+        redirect(action: "show", id: bandInstance.id)
+      }else {
+        render(view: "edit", model: [bandInstance: bandInstance])
+      }
+    }else {
+      flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
+      redirect(action: "list")
     }
+  }
      
-  
+  private void convertStyleNameToStyles( params){
+    if (params.stylesField &&params.stylesField!=""){
+      params.styles = params.styles +","+params.stylesField
+    }
+    params.styles = params.styles.split(",").collect{s-> 
+      def styleS = Style.findByName(s)
+      if(!styleS){
+        def newStyle = new Style(name:s)
+        newStyle.save(flush:true)
+        newStyle
+      }else{
+        styleS
+      }
+    }
+  }
+ 
 }
