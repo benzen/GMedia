@@ -15,19 +15,9 @@
         </div>
         <div class="body">
             <h1><g:message code="default.show.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-            <div class="message">${flash.message}</div>
-            </g:if>
             <div class="dialog">
                 <table>
                     <tbody>
-                    
-                        <tr class="prop">
-                            <td valign="top" class="name"><g:message code="band.id.label" default="Id" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: bandInstance, field: "id")}</td>
-                            
-                        </tr>
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="band.name.label" default="Name" /></td>
@@ -80,7 +70,7 @@
                             <td valign="top" style="text-align: left;" class="value">
                                 <ul>
                                 <g:each in="${bandInstance.styles}" var="s">
-                                    <li><g:link controller="style" action="show" id="${s.id}" >${s?.encodeAsHTML()}</g:link></li>
+                                    <li><g:link controller="style" action="show" id="${s.id}" >${s?.name?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>
                             </td>
