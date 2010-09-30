@@ -36,15 +36,14 @@
                                     <g:textField name="name" value="${bandInstance?.name}" />
                                 </td>
                             </tr>
-<tr class="prop">
-      <td valign="top" class="name">
-         <label for="logoPath"><g:message code="band.logoPath.label" default="Logo Path" /></label>
-      </td>
-      <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'logoPath', 'errors')}">
-         <!-- et là un input file -->
-         <input type="file" name="logoFile"/>
-      </td>
-   </tr>                        
+                            <tr class="prop">
+                              <td valign="top" class="name">
+                                 <label for="logoPath"><g:message code="band.logoPath.label" default="Logo Path" /></label>
+                              </td>
+                              <td valign="top" class="value ${hasErrors(bean: bandInstance, field: 'logoPath', 'errors')}">
+                                 <input type="file" name="logoFile"/>
+                              </td>
+                            </tr>                        
                             <tr class="prop">
                                 <td valign="top" class="name">
                                     <label for="webSite"><g:message code="band.webSite.label" default="Web Site" /></label>

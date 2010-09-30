@@ -1,6 +1,7 @@
 package gmedia.controllers
 
 import gmedia.domain.Band
+import gmedia.domain.Style
 import gmedia.service.upload.UploadService
 
 /**
@@ -24,25 +25,71 @@ class BandController {
 
   def save = {
     def bandInstance = new Band(params)
-    
-    // saving image File with the UploadService
-    def imageSaved = uploadService.saveImageFile(request.getFile('logoFile'), bandInstance.name, "/"+bandInstance.name) 
-    if (imageSaved) {
-      bandInstance.logoPath = imageSaved
-    } else {
-      flash.error = 'Bad image type. Authorized are : jpeg, gif and png'
-      render(view: "create", model: [bandInstance: bandInstance])
-      return
+    if(params.logoPath){
+      // saving image File with the UploadService
+      def imageSaved = uploadService.saveImageFile(request.getFile(params.logoPath), params.name, "/"+params.name) 
+      if (imageSaved) {
+        bandInstance.logoPath = imageSaved
+      } else {
+        flash.error = 'Bad image type. Authorized are : jpeg, gif and png'
+        redirect(view: "create", model: [bandInstance: bandInstance])
+      }
     }
-    
-    // image saving is ok, saving bandInstance to DB
-    if (bandInstance.save(flush:true)) {
+    if(    bandInstance.save(flush:true)){
       redirect(action: "show", id: bandInstance.id)
-    }
-    else {
-      flash.error = "Error when saving band"
+    }else {
       render(view: "create", model: [bandInstance: bandInstance])
     }
   }
+  
+  def update = {
+        if (params.stylesField &&params.stylesField!=""){
+          params.styles = params.styles +","+params.stylesField
+        }
+        
+        params.styles = params.styles.split(",").collect{s-> 
+                 def styleS = Style.findByName(s)
+                if(!styleS){
+                  def newStyle = new Style(name:s)
+                  newStyle.save(flush:true)
+                  newStyle
+                }else{
+                  styleS
+                }
+        }
+        def bandInstance = Band.get(params.id)
+        if (bandInstance) {
+            if (params.version) {
+                def version = params.version.toLong()
+                if (bandInstance.version > version) {
+                    
+                    bandInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'band.label', default: 'Band')] as Object[], "Another user has updated this Band while you were editing")
+                    render(view: "edit", model: [bandInstance: bandInstance])
+                    return
+                }
+            }
+            def bandStyles = params.styles
+//            params.remove("styles")
+            bandInstance.properties = params           
+//            bandInstance.styles= 
+//            bandStyles.each{
+//                bandInstance.addToStyles(it)
+//            }
+
+            if (!bandInstance.hasErrors() && bandInstance.save(flush: true)) {
+                flash.message = "${message(code: 'default.updated.message', args: [message(code: 'band.label', default: 'Band'), bandInstance.id])}"
+                redirect(action: "show", id: bandInstance.id)
+            }
+            else {
+                render(view: "edit", model: [bandInstance: bandInstance])
+            }
+        }
+        else {
+            flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'band.label', default: 'Band'), params.id])}"
+            redirect(action: "list")
+        }
+
+    }
+     
   
 }

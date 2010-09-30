@@ -37,9 +37,9 @@
                         </tr>
                     
                         <tr class="prop">
-                            <td valign="top" class="name"><g:message code="album.band.label" default="Band" /></td>
+                            <td valign="top" class="name"><g:message code="album.author.label" default="Author" /></td>
                             
-                            <td valign="top" class="value"><g:link controller="band" action="show" id="${albumInstance?.band?.id}">${albumInstance?.band?.encodeAsHTML()}</g:link></td>
+                            <td valign="top" class="value"><g:link controller="author" action="show" id="${albumInstance?.author?.id}">${albumInstance?.author?.encodeAsHTML()}</g:link></td>
                             
                         </tr>
                     
@@ -59,8 +59,9 @@
                     
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="album.logoPath.label" default="Logo Path" /></td>
-                            
-                            <td valign="top" class="value">${fieldValue(bean: albumInstance, field: "logoPath")}</td>
+                            <td valign="top" class="value">
+                              <img src="${createLink(controller:'dl', action:'images', params: [id: albumInstance.logoPath])}"/> 
+                            </td>
                             
                         </tr>
                     

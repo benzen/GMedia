@@ -80,7 +80,7 @@
                             <td valign="top" style="text-align: left;" class="value">
                                 <ul>
                                 <g:each in="${bandInstance.styles}" var="s">
-                                    <li><g:link controller="style" action="show" id="${s.id}">${s?.encodeAsHTML()}</g:link></li>
+                                    <li><g:link controller="style" action="show" id="${s.id}" >${s?.encodeAsHTML()}</g:link></li>
                                 </g:each>
                                 </ul>
                             </td>

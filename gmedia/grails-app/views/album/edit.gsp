@@ -7,7 +7,7 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'album.label', default: 'Album')}" />
         <title><g:message code="default.edit.label" args="[entityName]" /></title>
-    </head>
+      </head>
     <body>
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
@@ -42,10 +42,10 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="band"><g:message code="album.band.label" default="Band" /></label>
+                                  <label for="author"><g:message code="album.author.label" default="Author" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'band', 'errors')}">
-                                    <g:select name="band.id" from="${gmedia.domain.Band.list()}" optionKey="id" value="${albumInstance?.band?.id}"  />
+                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'author', 'errors')}">
+                                    <g:select name="author.id" from="${gmedia.domain.Author.list()}" optionKey="id" value="${albumInstance?.author?.id}"  />
                                 </td>
                             </tr>
                         

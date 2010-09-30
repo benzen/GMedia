@@ -24,7 +24,7 @@
                                            
                             <g:sortableColumn property="name" title="${message(code: 'album.name.label', default: 'Name')}" />
                         
-                            <th><g:message code="album.band.label" default="Band" /></th>
+                            <th><g:message code="album.author.label" default="Author" /></th>
                         
                             <g:sortableColumn property="dateCreated" title="${message(code: 'album.dateCreated.label', default: 'Date Created')}" />
                         
@@ -40,7 +40,7 @@
                                              
                             <td>${fieldValue(bean: albumInstance, field: "name")}</td>
                         
-                            <td>${fieldValue(bean: albumInstance, field: "band")}</td>
+                            <td>${fieldValue(bean: albumInstance, field: "author")}</td>
                         
                             <td><g:formatDate date="${albumInstance.dateCreated}" /></td>
                         

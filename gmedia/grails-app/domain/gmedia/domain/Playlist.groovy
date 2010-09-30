@@ -8,6 +8,10 @@ package gmedia.domain
 
 class Playlist extends Resource{
 
-    List content
-    String name
+   static hasMany = [tracks: Music,styles:Style]
+
+   String name
+   static constraints = {
+		styles(nullable:true)	
+	}
 }

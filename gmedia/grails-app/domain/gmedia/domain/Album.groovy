@@ -17,7 +17,6 @@ class Album {
 	Date lastUpdated
 
 	static constraints = {
-		name(nullable:false)
 		logoPath(nullable:true)	
 	}
 }

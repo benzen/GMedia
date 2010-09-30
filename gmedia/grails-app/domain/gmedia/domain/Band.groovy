@@ -8,7 +8,7 @@ package gmedia.domain
  */
 class Band extends Author{
 
-  static hasMany = [members:Person]
+  static hasMany = [members:Person, styles:Style]
   
   String logoPath
   String webSite
@@ -18,6 +18,6 @@ class Band extends Author{
   
   static constraints = {
     webSite(url:true, nullable:true)
-    logopath(nullable:true)
+    logoPath(nullable:true)
   }
 }

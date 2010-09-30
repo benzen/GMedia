@@ -19,6 +19,7 @@ class UserController {
       return false
     }
   }
+  
   def save = {
     params["password"]=params["password"].encodeAsPassword()
     params["confirmPassword"]= params["confirmPassword"].encodeAsPassword()

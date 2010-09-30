@@ -39,16 +39,18 @@
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="band"><g:message code="album.band.label" default="Band" /></label>
+                                    <label for="author"><g:message code="album.author.label" default="Author" /></label>
                                 </td>
-                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'band', 'errors')}">
-                                    <g:select name="band.id" from="${gmedia.domain.Band.list()}" optionKey="id" value="${albumInstance?.band?.id}"  />
+                                <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'author', 'errors')}">
+                                    <g:select name="author.id" from="${gmedia.domain.Author.list()}" optionKey="id" value="${albumInstance?.author?.id}"  />
                                 </td>
                             </tr>
                         
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="logoPath"><g:message code="album.logoPath.label" default="Logo Path" /></label>
+                                    <label for="logoPath">                                    
+                                        <input type="file" name="logoPath"/>
+                                    </label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: albumInstance, field: 'logoPath', 'errors')}">
                                     <g:textField name="logoPath" value="${albumInstance?.logoPath}" />
