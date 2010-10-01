@@ -20,7 +20,7 @@ class MusicController {
   }
   def play={
     if(!params.id || !Music.exists(params.id)){ 
-      flash.message = "No music exist for this id"
+      flash.error = "No music exist for this id"
     }else{ 
       params.music= Music.findById(params.id)
     }
