@@ -6,9 +6,6 @@
 </head>
 
 <body>	
-  <div id="message">
-    Welcome Home Message
-  </div>
 
 
 </body>

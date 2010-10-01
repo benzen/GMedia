@@ -9,14 +9,14 @@
 	<g:javascript library="jquery" plugin="jquery"/>
 	<jq:plugin name="jplayer"/>
 	<jq:plugin name="ui"/>
-	<g:javascript library="application" />
+<!--	<g:javascript library="application" /> -->
 	<g:layoutHead />
 	
     </head>
     <body>
       <g:render template="/layouts/header"/>
       <g:render template="/layouts/nav"/>
-      <div class="body">
+      <div  id="body">
 	<g:if test="${flash.message}">
           <div class="message">${flash.message}</div>
 	</g:if>
