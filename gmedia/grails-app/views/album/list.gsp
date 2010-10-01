@@ -26,11 +26,9 @@
                         
                             <th><g:message code="album.author.label" default="Author" /></th>
                         
-                            <g:sortableColumn property="dateCreated" title="${message(code: 'album.dateCreated.label', default: 'Date Created')}" />
-                        
-                            <g:sortableColumn property="lastUpdated" title="${message(code: 'album.lastUpdated.label', default: 'Last Updated')}" />
-                        
-                            <g:sortableColumn property="logoPath" title="${message(code: 'album.logoPath.label', default: 'Logo Path')}" />
+                            <g:sortableColumn property="logoPath" title="${message(code: 'album.logoPath.label', default: 'Logo')}" />
+                            <g:sortableColumn property="tracks" title="${message(code:'album.tracks.label', default:'Tracks')}"/>
+                            <g:sortableColumn property="styles" title="${message(code:'album.styles.label', default:'Styles')}"/>
                         
                         </tr>
                     </thead>
@@ -39,15 +37,20 @@
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                                              
                             <td>${fieldValue(bean: albumInstance, field: "name")}</td>
-                        
                             <td>${fieldValue(bean: albumInstance, field: "author")}</td>
-                        
-                            <td><g:formatDate date="${albumInstance.dateCreated}" /></td>
-                        
-                            <td><g:formatDate date="${albumInstance.lastUpdated}" /></td>
-                        
-                            <td>${fieldValue(bean: albumInstance, field: "logoPath")}</td>
-                        
+                            <td>
+                              <img src="${createLink(controller:'dl', action:'images', params: [id: albumInstance.logoPath])}"/>
+                            </td>
+                            <td>
+                              <g:each in="${albumInstance.tracks}" var="t" status="j">
+                              "${t.name}"<g:if test="albumInstance.tracks.size() != j">,</g:if>
+                              </g:each>
+                            </td>
+                            <td>
+                              <g:each in="${albumInstance.styles}" var="s" status="k">
+                              "${s.name}"<g:if test="albumInstance.styles.size() != k">,</g:if>
+                              </g:each>
+                            </td>                        
                         </tr>
                     </g:each>
                     </tbody>

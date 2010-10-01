@@ -9,7 +9,7 @@ import gmedia.domain.Album
 class AlbumController {
 		
   def scaffold = Album	
-  def beforeInterceptor = [action:this.&auth]	
+  def beforeInterceptor = [controller:"user",action:this.&auth]	
     
   def auth = {
     if(!session.user) {
